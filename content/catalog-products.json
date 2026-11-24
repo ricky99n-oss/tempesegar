@@ -1,0 +1,136 @@
+{
+  "currency": "KRW",
+  "image_origin": "Generated with built-in image_gen; illustrative images, not photographs of actual store products.",
+  "categories": [
+    {
+      "slug": "tempe",
+      "name_id": "Tempe",
+      "ko": "템페",
+      "en": "Tempe"
+    },
+    {
+      "slug": "buah",
+      "name_id": "Buah",
+      "ko": "과일",
+      "en": "Fruit"
+    },
+    {
+      "slug": "bahan-masak",
+      "name_id": "Bahan Masak",
+      "ko": "식재료",
+      "en": "Cooking Ingredients"
+    },
+    {
+      "slug": "jajanan",
+      "name_id": "Jajanan",
+      "ko": "간식",
+      "en": "Snacks"
+    }
+  ],
+  "products": [
+    {
+      "sku": "TMP-001",
+      "slug": "tempe-1-kotak",
+      "category_slug": "tempe",
+      "name_id": "Tempe",
+      "unit_label_id": "1 kotak",
+      "price_krw": 10000,
+      "short_description_id": "Tempe dijual per kotak.",
+      "description_id": "Tempe dijual per kotak. Ukuran dan kemasan dapat dikonfirmasi melalui chat.",
+      "image": "assets/products/tempe-ai-v1.png",
+      "alt_id": "Tempe dalam wadah bening.",
+      "ko": {
+        "name": "템페",
+        "unit_label": "1팩 (kotak)",
+        "short_description": "팩 단위로 판매하는 템페입니다.",
+        "description": "템페는 팩(kotak) 단위로 판매합니다. 크기와 포장은 채팅으로 확인해 주세요.",
+        "alt": "투명 용기에 담긴 템페."
+      },
+      "en": {
+        "name": "Tempe",
+        "unit_label": "1 box",
+        "short_description": "Tempe sold per box.",
+        "description": "Tempe is sold per box. Please confirm size and packaging through chat.",
+        "alt": "Tempe in a clear container."
+      }
+    },
+    {
+      "sku": "PSG-001",
+      "slug": "pisang-1-gepok",
+      "category_slug": "buah",
+      "name_id": "Pisang",
+      "unit_label_id": "1 gepok",
+      "price_krw": 32000,
+      "short_description_id": "Pisang dijual per gepok.",
+      "description_id": "Pisang dijual per gepok. Jumlah isi dan tingkat kematangan dapat dikonfirmasi melalui chat.",
+      "image": "assets/products/pisang-ai-v1.png",
+      "alt_id": "Kumpulan pisang kuning.",
+      "ko": {
+        "name": "바나나",
+        "unit_label": "1묶음 (gepok)",
+        "short_description": "묶음(gepok) 단위로 판매하는 바나나입니다.",
+        "description": "바나나는 묶음(gepok) 단위로 판매합니다. 구성 수량과 숙도는 채팅으로 확인해 주세요.",
+        "alt": "노란 바나나 한 묶음."
+      },
+      "en": {
+        "name": "Bananas",
+        "unit_label": "1 bunch (gepok)",
+        "short_description": "Bananas sold per bunch (gepok).",
+        "description": "Bananas are sold per bunch (gepok). Please confirm the quantity of fruit and ripeness through chat.",
+        "alt": "A bunch of yellow bananas."
+      }
+    },
+    {
+      "sku": "DPN-001",
+      "slug": "daun-pisang-1-ikat",
+      "category_slug": "bahan-masak",
+      "name_id": "Daun Pisang",
+      "unit_label_id": "1 ikat",
+      "price_krw": 4000,
+      "short_description_id": "Daun pisang dijual per ikat.",
+      "description_id": "Daun pisang dijual per ikat. Ukuran dan jumlah lembar dapat dikonfirmasi melalui chat.",
+      "image": "assets/products/daun-pisang-ai-v1.png",
+      "alt_id": "Tumpukan daun pisang hijau.",
+      "ko": {
+        "name": "바나나 잎",
+        "unit_label": "1묶음",
+        "short_description": "묶음 단위로 판매하는 바나나 잎입니다.",
+        "description": "바나나 잎은 묶음 단위로 판매합니다. 크기와 구성 수량은 채팅으로 확인해 주세요.",
+        "alt": "겹쳐 놓은 초록색 바나나 잎."
+      },
+      "en": {
+        "name": "Banana Leaves",
+        "unit_label": "1 bundle",
+        "short_description": "Banana leaves sold per bundle.",
+        "description": "Banana leaves are sold per bundle. Please confirm the size and number of leaves through chat.",
+        "alt": "Stacked green banana leaves."
+      }
+    },
+    {
+      "sku": "LMP-001",
+      "slug": "lemper-per-buah",
+      "category_slug": "jajanan",
+      "name_id": "Lemper",
+      "unit_label_id": "1 buah",
+      "price_krw": 2500,
+      "short_description_id": "Lemper dijual per buah.",
+      "description_id": "Lemper dijual per buah. Isian dan ukuran dapat dikonfirmasi melalui chat.",
+      "image": "assets/products/lemper-ai-v1.png",
+      "alt_id": "Lemper berbalut daun pisang.",
+      "ko": {
+        "name": "렘퍼",
+        "unit_label": "1개",
+        "short_description": "개당 판매하는 렘퍼입니다.",
+        "description": "렘퍼는 개당 판매합니다. 속재료와 크기는 채팅으로 확인해 주세요.",
+        "alt": "바나나 잎으로 감싼 렘퍼."
+      },
+      "en": {
+        "name": "Lemper",
+        "unit_label": "1 piece",
+        "short_description": "Lemper sold per piece.",
+        "description": "Lemper is sold per piece. Please confirm the filling and size through chat.",
+        "alt": "Lemper wrapped in banana leaf."
+      }
+    }
+  ]
+}

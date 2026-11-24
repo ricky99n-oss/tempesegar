@@ -14,6 +14,8 @@ Website: **https://tempe-segar.ricky99n.workers.dev** · [Login admin](https://t
 - Tidak ada produk demo atau akun admin otomatis di produksi. Akun admin diprovisikan terpisah sesuai instruksi pemilik; identitas login dan password tidak disimpan dalam source repository. Data produk asli, harga, foto, konfigurasi LINE, dan kredensial Google harus diisi pemilik.
 - Logo bawaan adalah wordmark sederhana, bukan logo resmi. Ilustrasi SVG di mode demo bukan foto produk aktual.
 
+Produk awal pemilik tersimpan di `content/catalog-products.json`: tempe ₩10,000/kotak, pisang ₩32,000/gepok, daun pisang ₩4,000/ikat, dan lemper ₩2,500/buah. Keempatnya sudah diterbitkan ke D1 produksi bersama kategori dan teks Indonesia/Korea/English. Foto realistis dibuat dengan built-in image_gen, disimpan di `assets/products/`, dan diunggah ke R2 melalui API admin. Asal pembuatan dan prompt akhir dicatat di `assets/products/README.md`. Tampilan publik menyajikan foto bersih serta keterangan produk; tautan admin tidak ditampilkan di footer.
+
 ## Menjalankan lokal
 
 Gunakan **Node.js 24 LTS** dan npm. Versi dependency dipin dalam `package.json` dan `package-lock.json`.

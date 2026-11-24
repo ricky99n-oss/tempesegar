@@ -8,6 +8,7 @@ export const mediaSchema = z.object({
   width: z.number().int().positive().max(1200),
   height: z.number().int().positive().max(1200),
   url: z.string().regex(/^\/media\/[a-f0-9-]{36}$/),
+  is_illustration: z.boolean().optional(),
 });
 export const productSchema = z
   .object({

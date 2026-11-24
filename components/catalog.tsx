@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import * as Dialog from '@radix-ui/react-dialog';
 import {
@@ -45,14 +44,16 @@ function ProductImage({
   const image = p.images[idx] || p.images[0];
   const alt = image ? translated(p, `alt:${image.id}`, image.alt_id || p.name_id, locale) : null;
   return image && !failed ? (
-    <img
-      src={image.url}
-      alt={alt?.text || p.name_id}
-      width={image.width}
-      height={image.height}
-      loading={priority ? 'eager' : 'lazy'}
-      onError={() => setFailed(true)}
-    />
+    <>
+      <img
+        src={image.url}
+        alt={alt?.text || p.name_id}
+        width={image.width}
+        height={image.height}
+        loading={priority ? 'eager' : 'lazy'}
+        onError={() => setFailed(true)}
+      />
+    </>
   ) : (
     <span className="image-fallback">
       <ImageOff />
@@ -573,7 +574,6 @@ export default function Catalog({ data, locale }: { data: CatalogData; locale: L
             <p>
               © {new Date(data.now).getUTCFullYear()} {data.settings.store_name}
             </p>
-            <Link href="/admin">{t.admin}</Link>
           </div>
         </div>
       </footer>

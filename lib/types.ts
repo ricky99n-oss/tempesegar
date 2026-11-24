@@ -8,7 +8,14 @@ export type Translation = {
   is_locked: boolean;
   error?: string;
 };
-export type Media = { id: string; alt_id: string; width: number; height: number; url: string };
+export type Media = {
+  id: string;
+  alt_id: string;
+  width: number;
+  height: number;
+  url: string;
+  is_illustration?: boolean;
+};
 export type Product = {
   id: string;
   sku: string;

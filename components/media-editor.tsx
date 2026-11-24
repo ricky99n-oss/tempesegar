@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Upload, ChevronLeft, ChevronRight, Trash2, LoaderCircle } from 'lucide-react';
 import type { Media } from '@/lib/types';
-import { Field } from './admin-fields';
+import { Field, Checkbox } from './admin-fields';
 export function MediaEditor({
   images,
   onChange,
@@ -118,6 +118,13 @@ export function MediaEditor({
               value={img.alt_id}
               onChange={(e) =>
                 onChange(images.map((m, j) => (j === i ? { ...m, alt_id: e.target.value } : m)))
+              }
+            />
+            <Checkbox
+              label="Gambar referensi"
+              checked={!!img.is_illustration}
+              onChange={(value) =>
+                onChange(images.map((m, j) => (i === j ? { ...m, is_illustration: value } : m)))
               }
             />
             <div className="image-actions">
