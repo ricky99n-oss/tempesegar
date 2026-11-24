@@ -9,12 +9,12 @@ Implementasi menggunakan permintaan pemilik untuk tidak memakai Supabase. Cloudf
 | Vitest                                  | 18 test lulus                                                           |
 | Playwright end-to-end                   | 3 test lulus pada D1/R2/Images lokal                                    |
 | Next.js production build                | Lulus, Next.js 16.4.6 / Node.js 24.19.0                                 |
-| OpenNext Workers build                  | Lulus, adapter 1.20.18 / Wrangler 4.167.0                               |
+| OpenNext Workers build                  | Lulus, adapter 1.20.17 / Wrangler 4.167.0                               |
 | Audit dependency                        | 0 kerentanan; glob/minimatch di-override ke rilis yang sudah diperbaiki |
 | Runtime preview Workers                 | HTTP 200                                                                |
 | Migrasi D1 produksi                     | 0001 dan 0002 diterapkan pada akun tujuan                               |
 | R2                                      | Bucket `tempe-segar-media` dibuat setelah diaktifkan pemilik            |
-| Database produksi                       | 0 admin, 0 produk; diperiksa melalui query read-only                    |
+| Database produksi                       | 1 admin aktif, 0 produk; identitas login tidak disimpan di repository   |
 
 E2E mencakup login lokal, penolakan seluruh mutasi admin tanpa sesi, upload gambar dengan decode/encode, penolakan SVG, tambah/edit/arsip/hapus produk, kategori dan relasi `ON DELETE SET NULL`, singleton unggulan, pengaturan dan validasi LINE, koreksi manual terkunci, perubahan sumber menjadi Perlu Ditinjau, konflik revisi, perubahan harga 409, pesan Korea, dan pengamanan media draft.
 
@@ -24,7 +24,7 @@ Uji concurrency SQL memeriksa hasil terjemahan revisi A yang selesai setelah B, 
 
 ## Dependensi eksternal dan batas verifikasi
 
-- **Sesuai permintaan pemilik, email/admin produksi kosong.** Tidak ada akun bootstrap publik atau password default. Petunjuk membuat admin tersedia di README.
+- **Akun admin produksi telah diprovisikan sesuai instruksi pemilik.** Tidak ada akun bootstrap publik atau password default; identitas dan credential tidak dicantumkan dalam repository.
 - Foto dan harga aktual belum diberikan. Produksi mulai dari etalase kosong; fixture tidak dimasukkan ke D1 produksi.
 - Kredensial Google Cloud belum diberikan. Alur penyimpanan, status gagal yang jujur, retry, fallback, manual override dan revisi sudah diuji; penerjemahan mesin terhadap Google live belum diuji.
 - ID/tautan LINE belum diisi di produksi; kanal nonaktif. Format tautan OA/shared link diuji tanpa mengirim pesan.
@@ -36,4 +36,8 @@ Uji concurrency SQL memeriksa hasil terjemahan revisi A yang selesai setelah B, 
 
 URL publik: **https://tempe-segar.ricky99n.workers.dev**. Pemeriksaan produksi tambahan dapat dijalankan dengan `node scripts/verify-production.mjs` (read-only; tidak membuat akun atau produk).
 
-Pemeriksaan browser produksi lulus: SSR lang, canonical URL, pergantian bahasa, lima lebar layar, dan proteksi admin; tanpa error browser dan tanpa mode demo. Versi Worker terverifikasi: 0640fe45-8931-4ec7-9134-da8c28c92b2e. Screenshot produksi tersimpan di docs/previews/production-1440.png dan production-375.png.
+Pemeriksaan browser produksi lulus: SSR lang, canonical URL, pergantian bahasa, lima lebar layar, dan proteksi admin; tanpa error browser dan tanpa mode demo. Versi Worker terverifikasi: 1b52078a-8547-4782-a7d0-00432d0c7e4b. Screenshot produksi tersimpan di docs/previews/production-1440.png dan production-375.png.
+
+Pembaruan login: akun admin telah diaktifkan melalui provisioning privat. Login, API sesi, dan halaman dashboard produksi merespons HTTP 200; dashboard serta daftar produk diverifikasi melalui browser dengan sesi autentik. Sesi verifikasi ditutup sesudah pengujian. Identitas dan password tidak dicantumkan pada source atau log.
+
+Regresi adapter 1.20.18 berhasil direproduksi pada preview Workers ketika request membawa cookie (HTTP 500). Pin adapter 1.20.17 mengembalikan respons normal; probe scripts/check-worker-cookies.mjs memeriksa tiga rute publik dengan cookie, penolakan sesi palsu, dan redirect admin. Probe yang sama ditambahkan ke CI.

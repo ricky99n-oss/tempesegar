@@ -19,6 +19,7 @@ jobs:
       - run: npm test
       - run: npm run cf:build
       - run: npm run db:local
+      - run: node scripts/check-worker-cookies.mjs
       - name: Prepare local browser tests
         run: |
           echo "E2E_PASSWORD=$(node -e "process.stdout.write(require('crypto').randomBytes(32).toString('hex'))")" >> "$GITHUB_ENV"

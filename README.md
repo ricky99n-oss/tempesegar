@@ -11,7 +11,7 @@ Website: **https://tempe-segar.ricky99n.workers.dev** · [Login admin](https://t
 - `/`, `/ko`, `/en` memakai satu komponen katalog; Indonesia selalu default. Detail menggunakan dialog/bottom sheet, bukan halaman produk.
 - Seluruh harga KRW; promo berlaku pada interval mulai inklusif, selesai eksklusif. Jadwal admin ditampilkan dalam Asia/Seoul dan disimpan UTC.
 - Google Cloud Translation Advanced v3 dipanggil melalui REST adapter server dengan service-account JWT, agar sesuai Workers. Teks sumber disimpan lebih dahulu; kedua target ditunggu, dibatasi timeout, dan hasil lama tidak dapat menimpa revisi baru. Kredensial belum diisi bukan keberhasilan terjemahan.
-- Tidak ada produk demo atau akun admin otomatis di produksi. Sesuai permintaan pemilik, **email dan akun admin produksi dibiarkan kosong**. Data produk asli, harga, foto, konfigurasi LINE, dan kredensial Google harus diisi pemilik.
+- Tidak ada produk demo atau akun admin otomatis di produksi. Akun admin diprovisikan terpisah sesuai instruksi pemilik; identitas login dan password tidak disimpan dalam source repository. Data produk asli, harga, foto, konfigurasi LINE, dan kredensial Google harus diisi pemilik.
 - Logo bawaan adalah wordmark sederhana, bukan logo resmi. Ilustrasi SVG di mode demo bukan foto produk aktual.
 
 ## Menjalankan lokal
@@ -53,7 +53,7 @@ R2 harus diaktifkan pada akun Cloudflare. Images melakukan transformasi ketika a
 
 Upload menerima JPEG/PNG/WebP maksimal 5 MB dan 25 megapiksel. Server memeriksa signature, membaca dimensi, decode, dan encode ulang WebP maksimal 1200 px; SVG ditolak. Nama objek berupa UUID. Gambar disimpan dengan referensi relasional D1; menghapus gambar yang masih dipakai ditolak. Upload yang gagal menyimpan metadata menghapus objek penggantinya. Pengaturan admin menyediakan pembersihan upload tak terpakai yang berumur lebih dari 24 jam. Jika penghapusan objek R2 gagal sesudah metadata dihapus, pemilik dapat memeriksa objek `catalog/` tanpa record D1 di dashboard R2.
 
-## Membuat admin pertama, nanti saat siap
+## Membuat akun admin
 
 Tidak ada pendaftaran publik, password bawaan, atau akun yang dapat diklaim pengunjung pertama. Pemilik memilih email dan menjalankan:
 
@@ -106,6 +106,8 @@ npm run build
 npm run cf:build
 npm audit
 ```
+
+Jalankan `node scripts/check-worker-cookies.mjs` setelah build Workers dan migrasi lokal. Probe ini memakai cookie uji tanpa rahasia untuk memeriksa katalog, penolakan sesi palsu, dan redirect admin pada runtime Workers. Versi adapter dipin ke 1.20.17 karena [regresi cookie pada 1.20.18](https://github.com/opennextjs/opennextjs-cloudflare/issues/1506); upgrade kembali setelah perbaikan upstream dirilis dan probe lulus.
 
 Unit/integration test memeriksa harga, batas waktu, URL encoding, fallback, validasi, constraint SQLite yang sama dengan D1, konflik edit, serta concurrency terjemahan. E2E memakai binding lokal D1/R2/Images dan akun **uji lokal saja**. Contoh PowerShell:
 
