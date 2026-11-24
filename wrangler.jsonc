@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tempe-segar",
+  "workers_dev": true,
+  "preview_urls": false,
+  "account_id": "611052fca5659b8f15f938bf261793b2",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-11-24",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "tempe-segar" }],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "tempe-segar-db",
+      "database_id": "ede2daeb-26ee-4704-bb17-819bcb218150",
+      "migrations_dir": "migrations",
+    },
+  ],
+  "r2_buckets": [{ "binding": "MEDIA", "bucket_name": "tempe-segar-media" }],
+  "images": { "binding": "IMAGES" },
+  "observability": { "enabled": true },
+  "vars": { "NEXT_PUBLIC_SITE_URL": "https://tempe-segar.ricky99n.workers.dev" },
+}

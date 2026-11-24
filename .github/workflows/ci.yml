@@ -1,0 +1,27 @@
+name: Verify Tempe Segar
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run cf:build
+      - run: npm run db:local
+      - name: Prepare local browser tests
+        run: |
+          echo "E2E_PASSWORD=$(node -e "process.stdout.write(require('crypto').randomBytes(32).toString('hex'))")" >> "$GITHUB_ENV"
+          npx playwright install --with-deps chromium
+      - run: node scripts/prepare-e2e.mjs
+      - run: npm run test:e2e

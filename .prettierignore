@@ -1,0 +1,10 @@
+node_modules
+.next
+.open-next
+.wrangler
+package-lock.json
+public/*.svg
+test-results
+playwright-report
+docs/TEMPE_SEGAR_MASTER_SPEC.md
+next-env.d.ts
